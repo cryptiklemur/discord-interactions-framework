@@ -1,6 +1,6 @@
 {
   "name": "discord-interactions-framework",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Discord Interactions framework",
   "keywords": ["express", "discord interactions", "cloudflare workers"],
   "main": "index.js",
