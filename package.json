@@ -1,9 +1,13 @@
 {
   "name": "discord-interactions-framework",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Discord Interactions framework",
   "keywords": ["express", "discord interactions", "cloudflare workers"],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "tsc"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/express": "^4.17.9",
