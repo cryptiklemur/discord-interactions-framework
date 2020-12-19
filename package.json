@@ -1,12 +1,13 @@
 {
   "name": "discord-interactions-framework",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Discord Interactions framework",
   "keywords": ["express", "discord interactions", "cloudflare workers"],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "mv dist/* ./"
   },
   "license": "MIT",
   "devDependencies": {
@@ -19,8 +20,5 @@
     "camelcase-keys": "^6.2.2",
     "discord-interactions": "^1.4.1",
     "eventemitter3": "^4.0.7"
-  },
-  "exports": {
-    "./": "./dist/"
   }
 }
