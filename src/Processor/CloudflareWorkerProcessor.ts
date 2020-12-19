@@ -3,6 +3,8 @@ import {verifyKey} from "discord-interactions";
 import {InteractionRequest, InteractionResponseType, InteractionType} from "../types";
 import camelcaseKeys from "camelcase-keys";
 
+const debug = require('debug')('discord-interactions-framework:processor:cloudflare')
+
 export class CloudflareWorkerProcessor extends AbstractProcessor<Request, Response> {
     public async isValidRequest(request: Request): Promise<boolean> {
         const signature = request.headers.get('x-signature-ed25519');
@@ -17,15 +19,18 @@ export class CloudflareWorkerProcessor extends AbstractProcessor<Request, Respon
     
     public async processRequest(request: Request, response?: Response): Promise<Response> {
         if (!await this.isValidRequest(request)) {
+            debug('Invalid request: %O', {headers: request.headers})
             return new Response('Bad request signature', {status: 401});
         }
         
         const jsonBody: InteractionRequest<any> = await this.parseBodyJson(request);
+        debug("Request: %O", {type: jsonBody.type});
         if (jsonBody.type === InteractionType.Ping) {
             return new Response(JSON.stringify({type: InteractionResponseType.Pong}), {status: 200});
         }
         
         const interaction = this.convertToInteraction(jsonBody);
+        debug("Interaction: %O", interaction);
         if (!this.registry.hasCommand(interaction.data.name)) {
             const error = new Error('Invalid command');
             (error as any).interaction = interaction;

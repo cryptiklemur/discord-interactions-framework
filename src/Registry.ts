@@ -8,6 +8,9 @@ import {
     RegisterCommandInterface
 } from "./types";
 
+const debug = require('debug')('discord-interactions-framework:registry')
+
+
 export class Registry extends EventEmitter {
     private readonly baseUrl = 'https://discord.com/api/v8/applications/';
     
@@ -32,6 +35,7 @@ export class Registry extends EventEmitter {
                 this.emit('upsert-command', request, response);
             } catch (e) {
                 this.emit('upsert-command-error', request, e);
+                debug('Error Upserting Command: %O', e);
                 this.emit('error', e);
             }
             await new Promise((r) => setTimeout(r, delay));
