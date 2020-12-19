@@ -1,6 +1,6 @@
 {
   "name": "discord-interactions-framework",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Discord Interactions framework",
   "keywords": ["express", "discord interactions", "cloudflare workers"],
   "main": "dist/index.js",
@@ -21,6 +21,6 @@
     "eventemitter3": "^4.0.7"
   },
   "exports": {
-    "./": "./dist"
+    "./": "./dist/"
   }
 }
