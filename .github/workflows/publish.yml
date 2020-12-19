@@ -13,14 +13,21 @@ jobs:
 
       - uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install # will run `yarn install` command
+          cmd: install
+
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build
+
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: clean
 
       - name: Publish if version has been updated
         uses: pascalgn/npm-publish-action@1.3.6
         with: # All of theses inputs are optional
           tag_name: "v%s"
           tag_message: "v%s"
-          create_tag: "true"
           commit_pattern: "^Release (\\S+)"
           workspace: "."
           publish_command: "yarn"
