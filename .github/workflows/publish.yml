@@ -11,17 +11,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
+      - run: yarn install
 
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build
+      - run: yarn build
 
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: clean
+      - run: yarn clean
 
       - name: Publish if version has been updated
         uses: pascalgn/npm-publish-action@1.3.6
